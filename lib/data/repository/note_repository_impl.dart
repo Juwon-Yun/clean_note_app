@@ -5,7 +5,7 @@ import 'package:clean_note/domain/repository/note_repository.dart';
 class NoteRepositoryImpl implements NoteRepository {
   final NoteDb db;
 
-  // NoteRepositoryImpl(this.db);
+  NoteRepositoryImpl(this.db);
 
   @override
   Future<Note> deleteNote(Note note) {
