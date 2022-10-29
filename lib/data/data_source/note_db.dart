@@ -15,6 +15,17 @@ class NoteDb {
       whereArgs: [id],
     );
 
+    if (maps.isNotEmpty) {
+      return Note.fromJson(maps.first);
+    }
+
     return null;
+  }
+
+  Future<List<Note>> getNotes() async {
+    // 조건 없이 note 테이블만 명시하면 전부다 가져온다.
+    final maps = await db.query('note');
+
+    return maps.map((e) => Note.fromJson(e)).toList();
   }
 }
