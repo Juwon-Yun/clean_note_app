@@ -45,12 +45,12 @@ class NoteDb {
     );
   }
 
-  Future<void> deleteNote(Note note) async {
-    await db.update(
+  Future<int> deleteNote(Note note) async {
+    int count = await db.delete(
       'note',
-      note.toJson(),
       where: 'id = ?',
       whereArgs: [note.id],
     );
+    return count;
   }
 }
