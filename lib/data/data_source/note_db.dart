@@ -28,4 +28,29 @@ class NoteDb {
 
     return maps.map((e) => Note.fromJson(e)).toList();
   }
+
+  Future<void> insertNote(Note note) async {
+    // values 에는 toJson 형태가 담기면 된다.
+    // 삽입한 row를 리턴받을 수 있다.
+    await db.insert('note', note.toJson());
+  }
+
+  Future<void> updateNote(Note note) async {
+    // 똑같이 count가 리턴된다.
+    await db.update(
+      'note',
+      note.toJson(),
+      where: 'id = ?',
+      whereArgs: [note.id],
+    );
+  }
+
+  Future<void> deleteNote(Note note) async {
+    await db.update(
+      'note',
+      note.toJson(),
+      where: 'id = ?',
+      whereArgs: [note.id],
+    );
+  }
 }
