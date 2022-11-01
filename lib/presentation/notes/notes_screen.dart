@@ -5,6 +5,21 @@ class NoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(),
+      appBar: AppBar(
+        title: const Text('Your Note'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.sort),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
