@@ -24,8 +24,10 @@ class NoteApp extends StatelessWidget {
                   backgroundColor: lightBlue,
                   foregroundColor: darkGray,
                 ),
+        appBarTheme:
+            Theme.of(context).appBarTheme.copyWith(backgroundColor: darkGray),
       ),
-      home: NoteScreen(),
+      home: const NoteScreen(),
     );
   }
 }

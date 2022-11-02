@@ -8,7 +8,13 @@ class NoteScreen extends StatelessWidget {
     return Scaffold(
       body: Container(),
       appBar: AppBar(
-        title: const Text('Your Note'),
+        elevation: 0,
+        title: const Text(
+          'Your Note',
+          style: TextStyle(
+            fontSize: 26,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {},
