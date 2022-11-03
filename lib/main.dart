@@ -16,17 +16,17 @@ class NoteApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.white,
-        backgroundColor: darkGray,
-        canvasColor: darkGray,
-        floatingActionButtonTheme:
-            Theme.of(context).floatingActionButtonTheme.copyWith(
-                  backgroundColor: lightBlue,
-                  foregroundColor: darkGray,
-                ),
-        appBarTheme:
-            Theme.of(context).appBarTheme.copyWith(backgroundColor: darkGray),
-      ),
+          primaryColor: Colors.white,
+          backgroundColor: darkGray,
+          canvasColor: darkGray,
+          floatingActionButtonTheme:
+              Theme.of(context).floatingActionButtonTheme.copyWith(
+                    backgroundColor: lightBlue,
+                    foregroundColor: darkGray,
+                  ),
+          appBarTheme: Theme.of(context).appBarTheme.copyWith(
+                backgroundColor: darkGray,
+              )),
       home: const NoteScreen(),
     );
   }

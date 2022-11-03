@@ -1,3 +1,6 @@
+import 'package:clean_note/domain/model/note.dart';
+import 'package:clean_note/presentation/notes/components/note_item.dart';
+import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 class NoteScreen extends StatelessWidget {
@@ -6,7 +9,6 @@ class NoteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
       appBar: AppBar(
         elevation: 0,
         title: const Text(
@@ -25,6 +27,26 @@ class NoteScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
+      ),
+      body: ListView(
+        children: [
+          NoteItem(
+            note: Note(
+              title: 'title',
+              content: 'content',
+              color: wisteria.value,
+              timestamp: DateTime.now().millisecondsSinceEpoch,
+            ),
+          ),
+          NoteItem(
+            note: Note(
+              title: 'title',
+              content: 'content',
+              color: skyBlue.value,
+              timestamp: DateTime.now().millisecondsSinceEpoch,
+            ),
+          ),
+        ],
       ),
     );
   }
