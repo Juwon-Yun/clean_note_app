@@ -26,27 +26,32 @@ class NoteScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+        ),
       ),
-      body: ListView(
-        children: [
-          NoteItem(
-            note: Note(
-              title: 'title',
-              content: 'content',
-              color: wisteria.value,
-              timestamp: DateTime.now().millisecondsSinceEpoch,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            NoteItem(
+              note: Note(
+                title: 'title',
+                content: 'content',
+                color: wisteria.value,
+                timestamp: DateTime.now().millisecondsSinceEpoch,
+              ),
             ),
-          ),
-          NoteItem(
-            note: Note(
-              title: 'title',
-              content: 'content',
-              color: skyBlue.value,
-              timestamp: DateTime.now().millisecondsSinceEpoch,
+            NoteItem(
+              note: Note(
+                title: 'title',
+                content: 'content',
+                color: skyBlue.value,
+                timestamp: DateTime.now().millisecondsSinceEpoch,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
