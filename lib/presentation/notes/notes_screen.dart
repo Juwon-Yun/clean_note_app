@@ -1,4 +1,5 @@
 import 'package:clean_note/domain/model/note.dart';
+import 'package:clean_note/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:clean_note/presentation/notes/components/note_item.dart';
 import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
@@ -26,12 +27,21 @@ class _NoteScreenState extends State<NoteScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.sort),
+            icon: const Icon(
+              Icons.sort,
+            ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const AddEditNoteScreen(),
+            ),
+          );
+        },
         child: const Icon(
           Icons.add,
         ),
