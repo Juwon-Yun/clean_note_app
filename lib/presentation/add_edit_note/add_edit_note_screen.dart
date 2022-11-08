@@ -43,7 +43,11 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         child: Column(
           children: [
             Row(
-              children: [],
+              children: noteColor
+                  .map(
+                    (Color color) => renderColor(color),
+                  )
+                  .toList(),
             ),
             TextField(
               controller: _titleController,
@@ -72,6 +76,18 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget renderColor(Color color) {
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.grey, width: 2.0),
+      ),
+      width: 32,
+      height: 32,
     );
   }
 }
