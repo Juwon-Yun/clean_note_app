@@ -20,6 +20,8 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     illusion,
   ];
 
+  Color _color = roseBud;
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -43,9 +45,17 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: noteColor
                   .map(
-                    (Color color) => renderColor(color),
+                    (Color color) => InkWell(
+                      onTap: () {
+                        setState(() {
+                          _color = color;
+                        });
+                      },
+                      child: renderColor(color, _color == color),
+                    ),
                   )
                   .toList(),
             ),
@@ -79,15 +89,27 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     );
   }
 
-  Widget renderColor(Color color) {
+  Widget renderColor(Color color, bool selected) {
     return Container(
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey, width: 2.0),
+        border: selected
+            ? Border.all(
+                color: Colors.black87,
+                width: 3.0,
+              )
+            : null,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.6),
+            blurRadius: 2.0,
+            spreadRadius: 0.3,
+          )
+        ],
       ),
-      width: 32,
-      height: 32,
+      width: 48,
+      height: 48,
     );
   }
 }
