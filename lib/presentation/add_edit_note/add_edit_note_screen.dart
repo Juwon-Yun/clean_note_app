@@ -39,9 +39,10 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
           Icons.save,
         ),
       ),
-      body: Container(
+      body: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
         padding: const EdgeInsets.all(16),
-        color: Colors.grey,
+        color: _color,
         child: Column(
           children: [
             Row(
