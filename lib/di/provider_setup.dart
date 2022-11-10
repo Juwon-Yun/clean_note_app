@@ -1,17 +1,11 @@
+import 'package:clean_note/data/data_source/note_db_helper.dart';
+import 'package:clean_note/data/repository/note_repository_impl.dart';
+import 'package:clean_note/domain/repository/note_repository.dart';
+import 'package:clean_note/presentation/add_edit_note/add_edit_note_view_model.dart';
+import 'package:clean_note/presentation/notes/note_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:sqflite/sqflite.dart';
-
-List<SingleChildWidget> globalProviders = [
-  ...independentModels,
-  ...dependentModels,
-  ...viewModels,
-];
-
-List<SingleChildWidget> independentModels = [];
-
-List<SingleChildWidget> dependentModels = [];
-
-List<SingleChildWidget> viewModels = [];
 
 Future<List<SingleChildWidget>> getProviders() async {
   Database database = await openDatabase(
@@ -23,5 +17,18 @@ Future<List<SingleChildWidget>> getProviders() async {
     },
   );
 
-  return globalProviders;
+  NoteDbHelper noteDbHelper = NoteDbHelper(database);
+  NoteRepository noteRepository = NoteRepositoryImpl(noteDbHelper);
+  NotesViewModel notesViewModel = NotesViewModel(noteRepository);
+  AddEditNoteViewModel addEditNoteViewModel =
+      AddEditNoteViewModel(noteRepository);
+
+  return [
+    ChangeNotifierProvider(
+      create: (_) => notesViewModel,
+    ),
+    ChangeNotifierProvider(
+      create: (_) => addEditNoteViewModel,
+    ),
+  ];
 }
