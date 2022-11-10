@@ -3,6 +3,8 @@ import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // NoteApp이 만들어지기 전에 db를 먼저 만듬
+
   runApp(
     const NoteApp(),
   );
