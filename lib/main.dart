@@ -1,12 +1,20 @@
+import 'package:clean_note/di/provider_setup.dart';
 import 'package:clean_note/presentation/notes/notes_screen.dart';
 import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   // NoteApp이 만들어지기 전에 db를 먼저 만듬
+  final providers = await getProviders();
 
   runApp(
-    const NoteApp(),
+    MultiProvider(
+      providers: providers,
+      child: const NoteApp(),
+    ),
   );
 }
 
