@@ -1,12 +1,13 @@
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/domain/repository/note_repository.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_event.dart';
+import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 class AddEditNoteViewModel with ChangeNotifier {
   final NoteRepository repository;
 
-  int _color = Colors.orange.value;
+  int _color = roseBud.value;
   int get color => _color;
 
   AddEditNoteViewModel(this.repository);

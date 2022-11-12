@@ -1,5 +1,8 @@
+import 'package:clean_note/presentation/add_edit_note/add_edit_note_event.dart';
+import 'package:clean_note/presentation/add_edit_note/add_edit_note_view_model.dart';
 import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddEditNoteScreen extends StatefulWidget {
   const AddEditNoteScreen({Key? key}) : super(key: key);
@@ -20,7 +23,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     illusion,
   ];
 
-  Color _color = roseBud;
+  // Color _color = roseBud;
 
   @override
   void dispose() {
@@ -31,6 +34,8 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<AddEditNoteViewModel>();
+
     return Scaffold(
       appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
@@ -42,7 +47,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         padding: const EdgeInsets.all(16),
-        color: _color,
+        color: Color(viewModel.color),
         child: Column(
           children: [
             Row(
@@ -51,11 +56,15 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
                   .map(
                     (Color color) => InkWell(
                       onTap: () {
-                        setState(() {
-                          _color = color;
-                        });
+                        viewModel.onEvent(
+                          AddEditNoteEvent.changeColor(color.value),
+                        );
+                        // setState(() {
+                        //   _color = color;
+                        // });
                       },
-                      child: renderColor(color, _color == color),
+                      child:
+                          renderColor(color, Color(viewModel.color) == color),
                     ),
                   )
                   .toList(),
