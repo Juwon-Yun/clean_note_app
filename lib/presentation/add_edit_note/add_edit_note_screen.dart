@@ -45,12 +45,22 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
               content: Text('제목이 비어있습니다.'),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            return;
           } else if (_contentController.text.isEmpty) {
             SnackBar snackBar = const SnackBar(
               content: Text('내용이 비어있습니다.'),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            return;
           }
+          // 이벤트 발생시키기
+          viewModel.onEvent(
+            AddEditNoteEvent.saveNote(
+              null,
+              _titleController.text,
+              _contentController.text,
+            ),
+          );
         },
         child: const Icon(
           Icons.save,
