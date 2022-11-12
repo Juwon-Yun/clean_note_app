@@ -38,6 +38,7 @@ class _NoteScreenState extends State<NoteScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
+              // 새 메모를 작성할때마다 초기 설정을 하려면 여기서 viewModel 을 읽어오면됨
               builder: (_) => const AddEditNoteScreen(),
             ),
           );

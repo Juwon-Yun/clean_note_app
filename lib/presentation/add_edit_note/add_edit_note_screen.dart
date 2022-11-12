@@ -39,7 +39,19 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     return Scaffold(
       appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          if (_titleController.text.isEmpty) {
+            SnackBar snackBar = const SnackBar(
+              content: Text('제목이 비어있습니다.'),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          } else if (_contentController.text.isEmpty) {
+            SnackBar snackBar = const SnackBar(
+              content: Text('내용이 비어있습니다.'),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+        },
         child: const Icon(
           Icons.save,
         ),
