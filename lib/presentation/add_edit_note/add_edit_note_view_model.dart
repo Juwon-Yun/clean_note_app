@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/domain/repository/note_repository.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_event.dart';
+import 'package:clean_note/presentation/add_edit_note/add_edit_note_ui_event.dart';
 import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +12,10 @@ class AddEditNoteViewModel with ChangeNotifier {
 
   int _color = roseBud.value;
   int get color => _color;
+
+  // event 발생할 때 마다 controller에 넣어준다.
+  final _eventController = StreamController<AddEditNoteUiEvent>();
+  Stream<AddEditNoteUiEvent> get eventStream => _eventController.stream;
 
   AddEditNoteViewModel(this.repository);
 
@@ -45,5 +52,9 @@ class AddEditNoteViewModel with ChangeNotifier {
             timestamp: DateTime.now().millisecondsSinceEpoch),
       );
     }
+
+    _eventController.add(
+      const AddEditNoteUiEvent.saveNote(),
+    );
   }
 }

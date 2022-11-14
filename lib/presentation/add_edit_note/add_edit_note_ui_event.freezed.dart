@@ -16,42 +16,37 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddEditNoteUiEvent<T> {
-  T get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T data) success,
+    required TResult Function() saveNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? success,
+    TResult? Function()? saveNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T data)? success,
+    TResult Function()? saveNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveNote<T> value) success,
+    required TResult Function(SaveNote<T> value) saveNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SaveNote<T> value)? success,
+    TResult? Function(SaveNote<T> value)? saveNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveNote<T> value)? success,
+    TResult Function(SaveNote<T> value)? saveNote,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AddEditNoteUiEventCopyWith<T, AddEditNoteUiEvent<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +55,6 @@ abstract class $AddEditNoteUiEventCopyWith<T, $Res> {
   factory $AddEditNoteUiEventCopyWith(AddEditNoteUiEvent<T> value,
           $Res Function(AddEditNoteUiEvent<T>) then) =
       _$AddEditNoteUiEventCopyWithImpl<T, $Res, AddEditNoteUiEvent<T>>;
-  @useResult
-  $Res call({T data});
 }
 
 /// @nodoc
@@ -74,30 +67,13 @@ class _$AddEditNoteUiEventCopyWithImpl<T, $Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_value.copyWith(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$SaveNoteCopyWith<T, $Res>
-    implements $AddEditNoteUiEventCopyWith<T, $Res> {
+abstract class _$$SaveNoteCopyWith<T, $Res> {
   factory _$$SaveNoteCopyWith(
           _$SaveNote<T> value, $Res Function(_$SaveNote<T>) then) =
       __$$SaveNoteCopyWithImpl<T, $Res>;
-  @override
-  @useResult
-  $Res call({T data});
 }
 
 /// @nodoc
@@ -107,76 +83,51 @@ class __$$SaveNoteCopyWithImpl<T, $Res>
   __$$SaveNoteCopyWithImpl(
       _$SaveNote<T> _value, $Res Function(_$SaveNote<T>) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$SaveNote<T>(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$SaveNote<T> implements SaveNote<T> {
-  const _$SaveNote(this.data);
-
-  @override
-  final T data;
+  const _$SaveNote();
 
   @override
   String toString() {
-    return 'AddEditNoteUiEvent<$T>.success(data: $data)';
+    return 'AddEditNoteUiEvent<$T>.saveNote()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SaveNote<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$SaveNote<T>);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SaveNoteCopyWith<T, _$SaveNote<T>> get copyWith =>
-      __$$SaveNoteCopyWithImpl<T, _$SaveNote<T>>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T data) success,
+    required TResult Function() saveNote,
   }) {
-    return success(data);
+    return saveNote();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? success,
+    TResult? Function()? saveNote,
   }) {
-    return success?.call(data);
+    return saveNote?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T data)? success,
+    TResult Function()? saveNote,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(data);
+    if (saveNote != null) {
+      return saveNote();
     }
     return orElse();
   }
@@ -184,39 +135,32 @@ class _$SaveNote<T> implements SaveNote<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveNote<T> value) success,
+    required TResult Function(SaveNote<T> value) saveNote,
   }) {
-    return success(this);
+    return saveNote(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SaveNote<T> value)? success,
+    TResult? Function(SaveNote<T> value)? saveNote,
   }) {
-    return success?.call(this);
+    return saveNote?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveNote<T> value)? success,
+    TResult Function(SaveNote<T> value)? saveNote,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (saveNote != null) {
+      return saveNote(this);
     }
     return orElse();
   }
 }
 
 abstract class SaveNote<T> implements AddEditNoteUiEvent<T> {
-  const factory SaveNote(final T data) = _$SaveNote<T>;
-
-  @override
-  T get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$SaveNoteCopyWith<T, _$SaveNote<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory SaveNote() = _$SaveNote<T>;
 }
