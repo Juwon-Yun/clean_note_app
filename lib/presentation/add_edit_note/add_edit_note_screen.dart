@@ -1,3 +1,4 @@
+import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_event.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_view_model.dart';
 import 'package:clean_note/ui/colors.dart';
@@ -5,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddEditNoteScreen extends StatefulWidget {
-  const AddEditNoteScreen({Key? key}) : super(key: key);
+  final Note? note;
+  const AddEditNoteScreen({
+    Key? key,
+    this.note,
+  }) : super(key: key);
 
   @override
   State<AddEditNoteScreen> createState() => _AddEditNoteScreenState();
@@ -56,7 +61,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
           // 이벤트 발생시키기
           viewModel.onEvent(
             AddEditNoteEvent.saveNote(
-              null,
+              widget.note == null ? null : widget.note!.id,
               _titleController.text,
               _contentController.text,
             ),

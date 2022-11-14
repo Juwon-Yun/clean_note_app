@@ -1,8 +1,10 @@
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:clean_note/presentation/notes/components/note_item.dart';
+import 'package:clean_note/presentation/notes/note_view_model.dart';
 import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen({Key? key}) : super(key: key);
@@ -13,8 +15,11 @@ class NoteScreen extends StatefulWidget {
 
 class _NoteScreenState extends State<NoteScreen> {
   final List<int> _items = List<int>.generate(50, (int index) => index);
+
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<NotesViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
