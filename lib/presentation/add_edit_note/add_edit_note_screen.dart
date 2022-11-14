@@ -31,6 +31,15 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
   // Color _color = roseBud;
 
   @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<AddEditNoteViewModel>();
+    });
+  }
+
+  @override
   void dispose() {
     _titleController.dispose();
     _contentController.dispose();
@@ -66,6 +75,10 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
               _contentController.text,
             ),
           );
+
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
         },
         child: const Icon(
           Icons.save,

@@ -67,6 +67,9 @@ class _NoteScreenState extends State<NoteScreen> {
           },
           itemBuilder: (context, index) {
             List<NoteItem> notes = getNotes(state.notes);
+
+            print('${notes.length}, ${state.notes.length}');
+
             if (notes.isEmpty) {
               return Container(
                 key: Key(
