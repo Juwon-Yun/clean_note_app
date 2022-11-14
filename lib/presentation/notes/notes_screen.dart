@@ -2,6 +2,7 @@ import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:clean_note/presentation/notes/components/note_item.dart';
 import 'package:clean_note/presentation/notes/note_view_model.dart';
+import 'package:clean_note/presentation/notes/notes_state.dart';
 import 'package:clean_note/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class _NoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<NotesViewModel>();
+    final state = viewModel.state;
 
     return Scaffold(
       appBar: AppBar(
@@ -64,7 +66,15 @@ class _NoteScreenState extends State<NoteScreen> {
             _items.insert(newIndex, item);
           },
           itemBuilder: (context, index) {
-            return renderNoteItem(index: index);
+            List<NoteItem> notes = getNotes(state.notes);
+            if (notes.isEmpty) {
+              return Container(
+                key: Key(
+                  index.toString(),
+                ),
+              );
+            }
+            return getNote(index, notes[index].note);
           },
           itemCount: 2,
         ),
@@ -72,9 +82,22 @@ class _NoteScreenState extends State<NoteScreen> {
     );
   }
 
+  List<NoteItem> getNotes(List<Note> notes) => List.generate(
+        notes.length,
+        (index) => NoteItem(note: notes[index], onDeleteTap: () {}),
+      );
+
+  Widget getNote(int idx, Note note) => NoteItem(
+        key: ValueKey(note),
+        note: note,
+        onDeleteTap: () {},
+      );
+
   NoteItem renderNoteItem({required int index}) {
     return NoteItem(
-      key: Key(index.toString()),
+      key: Key(
+        index.toString(),
+      ),
       onDeleteTap: () {},
       note: Note(
         title: 'title ${_items[index]}',
