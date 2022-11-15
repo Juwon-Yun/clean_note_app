@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_event.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_view_model.dart';
@@ -19,6 +21,7 @@ class AddEditNoteScreen extends StatefulWidget {
 class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
+  StreamSubscription? _streamSubscription;
 
   final List<Color> noteColor = [
     roseBud,
@@ -37,7 +40,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     Future.microtask(() {
       final viewModel = context.read<AddEditNoteViewModel>();
 
-      viewModel.eventStream.listen((event) {
+      _streamSubscription = viewModel.eventStream.listen((event) {
         event.when(saveNote: () {
           if (Navigator.canPop(context)) {
             // 저장해서 뒤로간건지 back press를 누른건지 식별해야함. 그래서 true 넣어줌
@@ -50,6 +53,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
 
   @override
   void dispose() {
+    _streamSubscription?.cancel();
     _titleController.dispose();
     _contentController.dispose();
     super.dispose();
