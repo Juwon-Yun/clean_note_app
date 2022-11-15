@@ -36,6 +36,15 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
 
     Future.microtask(() {
       final viewModel = context.read<AddEditNoteViewModel>();
+
+      viewModel.eventStream.listen((event) {
+        event.when(saveNote: () {
+          if (Navigator.canPop(context)) {
+            // 저장해서 뒤로간건지 back press를 누른건지 식별해야함. 그래서 true 넣어줌
+            Navigator.pop(context, true);
+          }
+        });
+      });
     });
   }
 
@@ -75,10 +84,6 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
               _contentController.text,
             ),
           );
-
-          if (Navigator.of(context).canPop()) {
-            Navigator.of(context).pop();
-          }
         },
         child: const Icon(
           Icons.save,

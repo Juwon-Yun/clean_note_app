@@ -1,6 +1,7 @@
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:clean_note/presentation/notes/components/note_item.dart';
+import 'package:clean_note/presentation/notes/note_event.dart';
 import 'package:clean_note/presentation/notes/note_view_model.dart';
 import 'package:clean_note/presentation/notes/notes_state.dart';
 import 'package:clean_note/ui/colors.dart';
@@ -41,14 +42,20 @@ class _NoteScreenState extends State<NoteScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          bool? isSavePressed = await Navigator.push(
             context,
             MaterialPageRoute(
               // 새 메모를 작성할때마다 초기 설정을 하려면 여기서 viewModel 을 읽어오면됨
               builder: (_) => const AddEditNoteScreen(),
             ),
           );
+
+          if (isSavePressed != null && isSavePressed) {
+            viewModel.onEvent(
+              const NotesEvent.loadNotes(),
+            );
+          }
         },
         child: const Icon(
           Icons.add,
