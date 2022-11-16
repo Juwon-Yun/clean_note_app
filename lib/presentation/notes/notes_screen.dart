@@ -84,9 +84,9 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
               );
             }
-            return getNote(index, notes[index].note);
+            return getNote(index, notes[index].note, viewModel);
           },
-          itemCount: 2,
+          itemCount: state.notes.length,
         ),
       ),
     );
@@ -97,10 +97,14 @@ class _NoteScreenState extends State<NoteScreen> {
         (index) => NoteItem(note: notes[index], onDeleteTap: () {}),
       );
 
-  Widget getNote(int idx, Note note) => NoteItem(
+  Widget getNote(int idx, Note note, NotesViewModel viewModel) => NoteItem(
         key: ValueKey(note),
         note: note,
-        onDeleteTap: () {},
+        onDeleteTap: () {
+          viewModel.onEvent(
+            NotesEvent.deleteNote(note),
+          );
+        },
       );
 
   NoteItem renderNoteItem({required int index}) {
