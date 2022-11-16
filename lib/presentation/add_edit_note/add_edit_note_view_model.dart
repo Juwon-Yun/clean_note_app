@@ -14,7 +14,8 @@ class AddEditNoteViewModel with ChangeNotifier {
   int get color => _color;
 
   // event 발생할 때 마다 controller에 넣어준다.
-  final _eventController = StreamController<AddEditNoteUiEvent>();
+  final _eventController =
+      StreamController<AddEditNoteUiEvent>.broadcast(); // 재구독 가능하게 만듬
   Stream<AddEditNoteUiEvent> get eventStream => _eventController.stream;
 
   AddEditNoteViewModel(this.repository);
