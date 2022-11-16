@@ -48,7 +48,7 @@ class NotesViewModel with ChangeNotifier {
     await _loadNotes();
   }
 
-  Future<void> _restoreNote(Note note) async {
+  Future<void> _restoreNote() async {
     if (_recentlyDeletedNote != null) {
       await repository.insertNote(_recentlyDeletedNote!);
       _recentlyDeletedNote = null;

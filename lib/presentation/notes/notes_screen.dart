@@ -104,6 +104,18 @@ class _NoteScreenState extends State<NoteScreen> {
           viewModel.onEvent(
             NotesEvent.deleteNote(note),
           );
+
+          SnackBar snackBar = SnackBar(
+            content: const Text('노트가 삭제되었습니다.'),
+            action: SnackBarAction(
+              label: '되돌리기',
+              onPressed: () {
+                viewModel.onEvent(
+                  const NotesEvent.restoreNote(),
+                );
+              },
+            ),
+          );
         },
       );
 
