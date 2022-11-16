@@ -97,26 +97,42 @@ class _NoteScreenState extends State<NoteScreen> {
         (index) => NoteItem(note: notes[index], onDeleteTap: () {}),
       );
 
-  Widget getNote(int idx, Note note, NotesViewModel viewModel) => NoteItem(
-        key: ValueKey(note),
-        note: note,
-        onDeleteTap: () {
-          viewModel.onEvent(
-            NotesEvent.deleteNote(note),
-          );
-
-          SnackBar snackBar = SnackBar(
-            content: const Text('노트가 삭제되었습니다.'),
-            action: SnackBarAction(
-              label: '되돌리기',
-              onPressed: () {
-                viewModel.onEvent(
-                  const NotesEvent.restoreNote(),
-                );
-              },
+  Widget getNote(int idx, Note note, NotesViewModel viewModel) =>
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => AddEditNoteScreen(
+                note: note,
+              ),
             ),
           );
         },
+        child: NoteItem(
+          key: ValueKey(note),
+          note: note,
+          onDeleteTap: () {
+            viewModel.onEvent(
+              NotesEvent.deleteNote(note),
+            );
+
+            SnackBar snackBar = SnackBar(
+              content: const Text('노트가 삭제되었습니다.'),
+              action: SnackBarAction(
+                label: '되돌리기',
+                onPressed: () {
+                  viewModel.onEvent(
+                    const NotesEvent.restoreNote(),
+                  );
+                },
+              ),
+            );
+
+            // TODO: 2개 이상 삭제시 snackBar 가 2개 쌓여있음.
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          },
+        ),
       );
 
   NoteItem renderNoteItem({required int index}) {
