@@ -75,8 +75,6 @@ class _NoteScreenState extends State<NoteScreen> {
           itemBuilder: (context, index) {
             List<NoteItem> notes = getNotes(state.notes);
 
-            print('${notes.length}, ${state.notes.length}');
-
             if (notes.isEmpty) {
               return Container(
                 key: Key(
@@ -99,8 +97,8 @@ class _NoteScreenState extends State<NoteScreen> {
 
   Widget getNote(int idx, Note note, NotesViewModel viewModel) =>
       GestureDetector(
-        onTap: () {
-          Navigator.push(
+        onTap: () async {
+          bool? isSavePressed = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (_) => AddEditNoteScreen(
@@ -108,6 +106,12 @@ class _NoteScreenState extends State<NoteScreen> {
               ),
             ),
           );
+
+          if (isSavePressed != null && isSavePressed) {
+            viewModel.onEvent(
+              const NotesEvent.loadNotes(),
+            );
+          }
         },
         child: NoteItem(
           key: ValueKey(note),
