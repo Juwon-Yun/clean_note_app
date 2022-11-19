@@ -19,32 +19,38 @@ mixin _$AddEditNoteUiEvent<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() saveNote,
+    required TResult Function(String message) showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? saveNote,
+    TResult? Function(String message)? showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? saveNote,
+    TResult Function(String message)? showSnackBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SaveNote<T> value) saveNote,
+    required TResult Function(ShowSnackBar<T> value) showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SaveNote<T> value)? saveNote,
+    TResult? Function(ShowSnackBar<T> value)? showSnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SaveNote<T> value)? saveNote,
+    TResult Function(ShowSnackBar<T> value)? showSnackBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +114,7 @@ class _$SaveNote<T> implements SaveNote<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() saveNote,
+    required TResult Function(String message) showSnackBar,
   }) {
     return saveNote();
   }
@@ -116,6 +123,7 @@ class _$SaveNote<T> implements SaveNote<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? saveNote,
+    TResult? Function(String message)? showSnackBar,
   }) {
     return saveNote?.call();
   }
@@ -124,6 +132,7 @@ class _$SaveNote<T> implements SaveNote<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? saveNote,
+    TResult Function(String message)? showSnackBar,
     required TResult orElse(),
   }) {
     if (saveNote != null) {
@@ -136,6 +145,7 @@ class _$SaveNote<T> implements SaveNote<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SaveNote<T> value) saveNote,
+    required TResult Function(ShowSnackBar<T> value) showSnackBar,
   }) {
     return saveNote(this);
   }
@@ -144,6 +154,7 @@ class _$SaveNote<T> implements SaveNote<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SaveNote<T> value)? saveNote,
+    TResult? Function(ShowSnackBar<T> value)? showSnackBar,
   }) {
     return saveNote?.call(this);
   }
@@ -152,6 +163,7 @@ class _$SaveNote<T> implements SaveNote<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SaveNote<T> value)? saveNote,
+    TResult Function(ShowSnackBar<T> value)? showSnackBar,
     required TResult orElse(),
   }) {
     if (saveNote != null) {
@@ -163,4 +175,137 @@ class _$SaveNote<T> implements SaveNote<T> {
 
 abstract class SaveNote<T> implements AddEditNoteUiEvent<T> {
   const factory SaveNote() = _$SaveNote<T>;
+}
+
+/// @nodoc
+abstract class _$$ShowSnackBarCopyWith<T, $Res> {
+  factory _$$ShowSnackBarCopyWith(
+          _$ShowSnackBar<T> value, $Res Function(_$ShowSnackBar<T>) then) =
+      __$$ShowSnackBarCopyWithImpl<T, $Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$ShowSnackBarCopyWithImpl<T, $Res>
+    extends _$AddEditNoteUiEventCopyWithImpl<T, $Res, _$ShowSnackBar<T>>
+    implements _$$ShowSnackBarCopyWith<T, $Res> {
+  __$$ShowSnackBarCopyWithImpl(
+      _$ShowSnackBar<T> _value, $Res Function(_$ShowSnackBar<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ShowSnackBar<T>(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ShowSnackBar<T> implements ShowSnackBar<T> {
+  const _$ShowSnackBar(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'AddEditNoteUiEvent<$T>.showSnackBar(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ShowSnackBar<T> &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShowSnackBarCopyWith<T, _$ShowSnackBar<T>> get copyWith =>
+      __$$ShowSnackBarCopyWithImpl<T, _$ShowSnackBar<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() saveNote,
+    required TResult Function(String message) showSnackBar,
+  }) {
+    return showSnackBar(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? saveNote,
+    TResult? Function(String message)? showSnackBar,
+  }) {
+    return showSnackBar?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? saveNote,
+    TResult Function(String message)? showSnackBar,
+    required TResult orElse(),
+  }) {
+    if (showSnackBar != null) {
+      return showSnackBar(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SaveNote<T> value) saveNote,
+    required TResult Function(ShowSnackBar<T> value) showSnackBar,
+  }) {
+    return showSnackBar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SaveNote<T> value)? saveNote,
+    TResult? Function(ShowSnackBar<T> value)? showSnackBar,
+  }) {
+    return showSnackBar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SaveNote<T> value)? saveNote,
+    TResult Function(ShowSnackBar<T> value)? showSnackBar,
+    required TResult orElse(),
+  }) {
+    if (showSnackBar != null) {
+      return showSnackBar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ShowSnackBar<T> implements AddEditNoteUiEvent<T> {
+  const factory ShowSnackBar(final String message) = _$ShowSnackBar<T>;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$ShowSnackBarCopyWith<T, _$ShowSnackBar<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -33,6 +33,8 @@ class AddEditNoteViewModel with ChangeNotifier {
   }
 
   Future<void> _saveNote(int? id, String title, String content) async {
+    if (title.isEmpty || content.isEmpty) {}
+
     if (id == null) {
       // insert
       await repository.insertNote(
