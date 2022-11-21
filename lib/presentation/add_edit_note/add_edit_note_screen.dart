@@ -51,6 +51,11 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
             // 저장해서 뒤로간건지 back press를 누른건지 식별해야함. 그래서 true 넣어줌
             Navigator.pop(context, true);
           }
+        }, showSnackBar: (String message) {
+          SnackBar snackBar = SnackBar(
+            content: Text(message),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         });
       });
     });
@@ -72,19 +77,19 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
       appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_titleController.text.isEmpty) {
-            SnackBar snackBar = const SnackBar(
-              content: Text('제목이 비어있습니다.'),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            return;
-          } else if (_contentController.text.isEmpty) {
-            SnackBar snackBar = const SnackBar(
-              content: Text('내용이 비어있습니다.'),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            return;
-          }
+          // if (_titleController.text.isEmpty) {
+          //   SnackBar snackBar = const SnackBar(
+          //     content: Text('제목이 비어있습니다.'),
+          //   );
+          //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          //   return;
+          // } else if (_contentController.text.isEmpty) {
+          //   SnackBar snackBar = const SnackBar(
+          //     content: Text('내용이 비어있습니다.'),
+          //   );
+          //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          //   return;
+          // }
           // 이벤트 발생시키기
           viewModel.onEvent(
             AddEditNoteEvent.saveNote(
