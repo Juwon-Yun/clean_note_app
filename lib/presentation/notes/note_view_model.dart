@@ -1,5 +1,7 @@
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/domain/repository/note_repository.dart';
+import 'package:clean_note/domain/use_case/add_note.dart';
+import 'package:clean_note/domain/use_case/delete_note.dart' as use_case;
 import 'package:clean_note/domain/use_case/get_notes.dart';
 import 'package:clean_note/presentation/notes/note_event.dart';
 import 'package:clean_note/presentation/notes/notes_state.dart';
@@ -9,7 +11,10 @@ import 'package:flutter/material.dart';
 class NotesViewModel with ChangeNotifier {
   // final NoteRepository repository;
 
+  // FIXME : refector 4 use case 사용
   final GetNotes getNotes;
+  final use_case.DeleteNote deleteNote;
+  final AddNote addNote;
 
   // FIXME : refector 2
   NotesState _state = NotesState(notes: []);
@@ -24,7 +29,7 @@ class NotesViewModel with ChangeNotifier {
   //   _loadNotes();
   // }
 
-  NotesViewModel(this.getNotes) {
+  NotesViewModel(this.getNotes, this.deleteNote, this.addNote) {
     _loadNotes();
   }
 
@@ -60,7 +65,9 @@ class NotesViewModel with ChangeNotifier {
   }
 
   Future<void> _deleteNote(Note note) async {
-    await repository.deleteNote(note);
+    // await repository.deleteNote(note);
+
+    deleteNote(note);
 
     _recentlyDeletedNote = note;
 
@@ -69,7 +76,10 @@ class NotesViewModel with ChangeNotifier {
 
   Future<void> _restoreNote() async {
     if (_recentlyDeletedNote != null) {
-      await repository.insertNote(_recentlyDeletedNote!);
+      // await repository.insertNote(_recentlyDeletedNote!);
+
+      addNote.call(_recentlyDeletedNote!);
+
       _recentlyDeletedNote = null;
 
       _loadNotes();
