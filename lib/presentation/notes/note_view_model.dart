@@ -31,6 +31,11 @@ class NotesViewModel with ChangeNotifier {
 
   Future<void> _loadNotes() async {
     List<Note> notes = await repository.getNotes();
+    // 오름차순 정렬
+    // notes.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+
+    // 내림차순 정렬
+    notes.sort((a, b) => -a.timestamp.compareTo(b.timestamp));
 
     // FIXME : refector 1
     // _notes = notes;
