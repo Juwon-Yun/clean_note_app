@@ -23,7 +23,16 @@ class GetNotes {
     List<Note> notes = await repository.getNotes();
 
     noteOrder.when(
-      title: (OrderType orderType) {},
+      title: (OrderType orderType) {
+        orderType.when(
+          ascending: () {
+            notes.sort((a, b) => a.title.compareTo(b.title));
+          },
+          descending: () {
+            notes.sort((a, b) => -a.title.compareTo(b.title));
+          },
+        );
+      },
       date: (OrderType orderType) {
         orderType.when(
           ascending: () {
@@ -34,7 +43,17 @@ class GetNotes {
           },
         );
       },
-      color: (OrderType orderType) {},
+      color: (OrderType orderType) {
+        orderType.when(
+          ascending: () {
+            // color 값이 int 라서 비교가 가능하다
+            notes.sort((a, b) => a.color.compareTo(b.color));
+          },
+          descending: () {
+            notes.sort((a, b) => -a.color.compareTo(b.color));
+          },
+        );
+      },
     );
 
     // notes.sort((a, b) => -a.timestamp.compareTo(b.timestamp));

@@ -1,8 +1,4 @@
 import 'package:clean_note/domain/model/note.dart';
-import 'package:clean_note/domain/repository/note_repository.dart';
-import 'package:clean_note/domain/use_case/add_note.dart';
-import 'package:clean_note/domain/use_case/delete_note.dart' as use_case;
-import 'package:clean_note/domain/use_case/get_notes.dart';
 import 'package:clean_note/domain/use_case/use_cases.dart';
 import 'package:clean_note/domain/util/note_order.dart';
 import 'package:clean_note/domain/util/order_type.dart';
