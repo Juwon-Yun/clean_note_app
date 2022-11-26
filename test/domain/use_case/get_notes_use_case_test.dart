@@ -1,6 +1,8 @@
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/domain/repository/note_repository.dart';
 import 'package:clean_note/domain/use_case/get_notes.dart';
+import 'package:clean_note/domain/util/note_order.dart';
+import 'package:clean_note/domain/util/order_type.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -12,9 +14,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   Timeout timeout = const Timeout(Duration(seconds: 10));
 
-  test('정렬 기능이 잘 동작해야 한다.', () {
+  test('정렬 기능이 잘 동작해야 한다.', () async {
     final repository = MockNoteRepository();
-    final useCse = GetNotes(repository);
+    final getNotesUseCase = GetNotes(repository);
 
     // 동작 정의
     when(
@@ -36,5 +38,56 @@ void main() {
         ),
       ],
     );
+
+    // date(timestamp) 로 정렬
+    List<Note> result = await getNotesUseCase(
+      const NoteOrder.date(
+        OrderType.descending(),
+      ),
+    );
+
+    expect(result, isA<List<Note>>());
+
+    expect(result.first.timestamp, 2);
+
+    result = await getNotesUseCase(
+      const NoteOrder.date(
+        OrderType.ascending(),
+      ),
+    );
+
+    expect(result.first.timestamp, 0);
+
+    result = await getNotesUseCase(
+      const NoteOrder.title(
+        OrderType.ascending(),
+      ),
+    );
+
+    expect(result.first.title, 'title');
+
+    result = await getNotesUseCase(
+      const NoteOrder.title(
+        OrderType.descending(),
+      ),
+    );
+
+    expect(result.first.title, 'title2');
+
+    result = await getNotesUseCase(
+      const NoteOrder.color(
+        OrderType.descending(),
+      ),
+    );
+
+    expect(result.first.color, 2);
+
+    result = await getNotesUseCase(
+      const NoteOrder.color(
+        OrderType.ascending(),
+      ),
+    );
+
+    expect(result.first.color, 1);
   }, timeout: timeout);
 }
