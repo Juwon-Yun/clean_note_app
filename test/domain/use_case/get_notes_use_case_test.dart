@@ -47,8 +47,10 @@ void main() {
     );
 
     expect(result, isA<List<Note>>());
-
     expect(result.first.timestamp, 2);
+
+    // getNotes 함수가 수행이 되었는지 확인
+    verify(repository.getNotes());
 
     result = await getNotesUseCase(
       const NoteOrder.date(
@@ -58,6 +60,8 @@ void main() {
 
     expect(result.first.timestamp, 0);
 
+    verify(repository.getNotes());
+
     result = await getNotesUseCase(
       const NoteOrder.title(
         OrderType.ascending(),
@@ -65,6 +69,8 @@ void main() {
     );
 
     expect(result.first.title, 'title');
+
+    verify(repository.getNotes());
 
     result = await getNotesUseCase(
       const NoteOrder.title(
@@ -74,6 +80,8 @@ void main() {
 
     expect(result.first.title, 'title2');
 
+    verify(repository.getNotes());
+
     result = await getNotesUseCase(
       const NoteOrder.color(
         OrderType.descending(),
@@ -82,6 +90,8 @@ void main() {
 
     expect(result.first.color, 2);
 
+    verify(repository.getNotes());
+
     result = await getNotesUseCase(
       const NoteOrder.color(
         OrderType.ascending(),
@@ -89,5 +99,13 @@ void main() {
     );
 
     expect(result.first.color, 1);
+
+    verify(repository.getNotes());
+
+    // expect 하지않고 verify 했기 때문에 에러
+    // verify(repository.getNotes());
+
+    // 더 이상 작동안했다면 success
+    verifyNoMoreInteractions(repository);
   }, timeout: timeout);
 }
