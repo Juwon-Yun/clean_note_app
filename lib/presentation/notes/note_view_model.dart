@@ -4,6 +4,8 @@ import 'package:clean_note/domain/use_case/add_note.dart';
 import 'package:clean_note/domain/use_case/delete_note.dart' as use_case;
 import 'package:clean_note/domain/use_case/get_notes.dart';
 import 'package:clean_note/domain/use_case/use_cases.dart';
+import 'package:clean_note/domain/util/note_order.dart';
+import 'package:clean_note/domain/util/order_type.dart';
 import 'package:clean_note/presentation/notes/note_event.dart';
 import 'package:clean_note/presentation/notes/notes_state.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,12 @@ class NotesViewModel with ChangeNotifier {
   final UseCases useCases;
 
   // FIXME : refector 2
-  NotesState _state = NotesState(notes: []);
+  NotesState _state = NotesState(
+    notes: [],
+    noteOrder: const NoteOrder.date(
+      OrderType.descending(),
+    ),
+  );
   NotesState get state => _state;
 
   // List<Note> _notes = [];
@@ -51,7 +58,9 @@ class NotesViewModel with ChangeNotifier {
     // call 생략
     // List<Note> notes = await getNotes.call();
 
-    List<Note> notes = await useCases.getNotes();
+    List<Note> notes = await useCases.getNotes(
+      _state.noteOrder,
+    );
 
     // FIXME : refector 3
     // List<Note> notes = await repository.getNotes();
