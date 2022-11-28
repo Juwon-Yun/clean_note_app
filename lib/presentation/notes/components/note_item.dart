@@ -27,12 +27,12 @@ class NoteItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  note.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
+                Text(note.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline5
+                    // .apply(color: Colors.white),
+                    ),
                 const SizedBox(
                   height: 10,
                 ),

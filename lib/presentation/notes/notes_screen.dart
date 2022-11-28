@@ -26,6 +26,7 @@ class _NoteScreenState extends State<NoteScreen> {
     final state = viewModel.state;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
         title: const Text(

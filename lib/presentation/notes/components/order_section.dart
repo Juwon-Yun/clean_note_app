@@ -1,4 +1,5 @@
 import 'package:clean_note/domain/util/note_order.dart';
+import 'package:clean_note/domain/util/order_type.dart';
 import 'package:flutter/material.dart';
 
 typedef OnOrderChange = Function(NoteOrder noteOrder);
@@ -66,7 +67,42 @@ class OrderSection extends StatelessWidget {
           ],
         ),
         Row(
-          children: [],
+          children: [
+            Radio<OrderType>(
+              value: const OrderType.ascending(),
+              groupValue: noteOrder.orderType,
+              onChanged: (OrderType? value) {
+                onOrderChange(
+                  noteOrder.copyWith(
+                    orderType: const OrderType.ascending(),
+                  ),
+                );
+              },
+            ),
+            const Text(
+              'ascending',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            Radio<OrderType>(
+              value: const OrderType.descending(),
+              groupValue: noteOrder.orderType,
+              onChanged: (OrderType? value) {
+                onOrderChange(
+                  noteOrder.copyWith(
+                    orderType: const OrderType.descending(),
+                  ),
+                );
+              },
+            ),
+            const Text(
+              'descending',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ],
     );
