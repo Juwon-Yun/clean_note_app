@@ -24,6 +24,7 @@ class NotesViewModel with ChangeNotifier {
     noteOrder: const NoteOrder.date(
       OrderType.descending(),
     ),
+    isOrderSectionVisible: false,
   );
   NotesState get state => _state;
 

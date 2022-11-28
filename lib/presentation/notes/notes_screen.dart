@@ -68,13 +68,18 @@ class _NoteScreenState extends State<NoteScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            OrderSection(
-              noteOrder: viewModel.state.noteOrder,
-              onOrderChange: (NoteOrder noteOrder) {
-                viewModel.onEvent(
-                  NotesEvent.changeOrder(noteOrder),
-                );
-              },
+            AnimatedSwitcher(
+              duration: const Duration(
+                milliseconds: 300,
+              ),
+              child: OrderSection(
+                noteOrder: viewModel.state.noteOrder,
+                onOrderChange: (NoteOrder noteOrder) {
+                  viewModel.onEvent(
+                    NotesEvent.changeOrder(noteOrder),
+                  );
+                },
+              ),
             ),
             Expanded(
               child: ReorderableListView.builder(

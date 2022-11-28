@@ -13,6 +13,7 @@ class NotesState with _$NotesState {
     // @Default([])  List<Note> notes,
     required List<Note> notes,
     required NoteOrder noteOrder,
+    required bool isOrderSectionVisible,
   }) = _NotesState;
   // freezed 안에 freezed 를 사용하려면
   // .g.dart, FromJson, toJson을 삭제해서
