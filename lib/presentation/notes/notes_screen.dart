@@ -72,14 +72,16 @@ class _NoteScreenState extends State<NoteScreen> {
               duration: const Duration(
                 milliseconds: 300,
               ),
-              child: OrderSection(
-                noteOrder: viewModel.state.noteOrder,
-                onOrderChange: (NoteOrder noteOrder) {
-                  viewModel.onEvent(
-                    NotesEvent.changeOrder(noteOrder),
-                  );
-                },
-              ),
+              child: state.isOrderSectionVisible == true
+                  ? OrderSection(
+                      noteOrder: viewModel.state.noteOrder,
+                      onOrderChange: (NoteOrder noteOrder) {
+                        viewModel.onEvent(
+                          NotesEvent.changeOrder(noteOrder),
+                        );
+                      },
+                    )
+                  : Container(),
             ),
             Expanded(
               child: ReorderableListView.builder(

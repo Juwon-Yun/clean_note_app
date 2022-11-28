@@ -49,7 +49,15 @@ class NotesViewModel with ChangeNotifier {
       deleteNote: _deleteNote,
       restoreNote: _restoreNote,
       changeOrder: _changeOrder,
+      toggleOrderSection: _toggleOrderSection,
     );
+  }
+
+  Future<void> _toggleOrderSection() async {
+    _state = state.copyWith(
+      isOrderSectionVisible: !state.isOrderSectionVisible,
+    );
+    notifyListeners();
   }
 
   Future<void> _changeOrder(NoteOrder noteOrder) async {
