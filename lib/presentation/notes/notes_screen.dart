@@ -1,6 +1,7 @@
 import 'package:clean_note/domain/model/note.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:clean_note/presentation/notes/components/note_item.dart';
+import 'package:clean_note/presentation/notes/components/order_section.dart';
 import 'package:clean_note/presentation/notes/note_event.dart';
 import 'package:clean_note/presentation/notes/note_view_model.dart';
 import 'package:clean_note/presentation/notes/notes_state.dart';
@@ -63,28 +64,35 @@ class _NoteScreenState extends State<NoteScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ReorderableListView.builder(
-          onReorder: (int oldIndex, int newIndex) {
-            if (oldIndex < newIndex) {
-              newIndex -= 1;
-            }
+        child: Column(
+          children: [
+            OrderSection(),
+            Expanded(
+              child: ReorderableListView.builder(
+                onReorder: (int oldIndex, int newIndex) {
+                  if (oldIndex < newIndex) {
+                    newIndex -= 1;
+                  }
 
-            final item = _items.removeAt(oldIndex);
-            _items.insert(newIndex, item);
-          },
-          itemBuilder: (context, index) {
-            List<NoteItem> notes = getNotes(state.notes);
+                  final item = _items.removeAt(oldIndex);
+                  _items.insert(newIndex, item);
+                },
+                itemBuilder: (context, index) {
+                  List<NoteItem> notes = getNotes(state.notes);
 
-            if (notes.isEmpty) {
-              return Container(
-                key: Key(
-                  index.toString(),
-                ),
-              );
-            }
-            return getNote(index, notes[index].note, viewModel);
-          },
-          itemCount: state.notes.length,
+                  if (notes.isEmpty) {
+                    return Container(
+                      key: Key(
+                        index.toString(),
+                      ),
+                    );
+                  }
+                  return getNote(index, notes[index].note, viewModel);
+                },
+                itemCount: state.notes.length,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -97,6 +105,7 @@ class _NoteScreenState extends State<NoteScreen> {
 
   Widget getNote(int idx, Note note, NotesViewModel viewModel) =>
       GestureDetector(
+        key: ValueKey(note),
         onTap: () async {
           bool? isSavePressed = await Navigator.push(
             context,
