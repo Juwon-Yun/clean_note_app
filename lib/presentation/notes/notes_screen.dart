@@ -1,4 +1,5 @@
 import 'package:clean_note/domain/model/note.dart';
+import 'package:clean_note/domain/util/note_order.dart';
 import 'package:clean_note/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:clean_note/presentation/notes/components/note_item.dart';
 import 'package:clean_note/presentation/notes/components/order_section.dart';
@@ -66,7 +67,14 @@ class _NoteScreenState extends State<NoteScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            OrderSection(),
+            OrderSection(
+              noteOrder: viewModel.state.noteOrder,
+              onOrderChange: (NoteOrder noteOrder) {
+                viewModel.onEvent(
+                  NotesEvent.changeOrder(noteOrder),
+                );
+              },
+            ),
             Expanded(
               child: ReorderableListView.builder(
                 onReorder: (int oldIndex, int newIndex) {

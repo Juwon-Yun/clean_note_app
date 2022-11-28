@@ -26,17 +26,28 @@ class NoteApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primaryColor: Colors.white,
-          backgroundColor: darkGray,
-          canvasColor: darkGray,
-          floatingActionButtonTheme:
-              Theme.of(context).floatingActionButtonTheme.copyWith(
-                    backgroundColor: lightBlue,
-                    foregroundColor: darkGray,
-                  ),
-          appBarTheme: Theme.of(context).appBarTheme.copyWith(
-                backgroundColor: darkGray,
-              )),
+        unselectedWidgetColor: Colors.white,
+        primaryColor: Colors.white,
+        backgroundColor: darkGray,
+        canvasColor: darkGray,
+        floatingActionButtonTheme:
+            Theme.of(context).floatingActionButtonTheme.copyWith(
+                  backgroundColor: lightBlue,
+                  foregroundColor: darkGray,
+                ),
+        appBarTheme: Theme.of(context).appBarTheme.copyWith(
+              backgroundColor: darkGray,
+            ),
+        // textTheme: Theme.of(context).textTheme.apply(
+        //       bodyColor: Colors.white,
+        //     ),
+        // apply 가 없음
+        radioTheme: Theme.of(context).radioTheme.copyWith(
+              fillColor: const MaterialStatePropertyAll(
+                Colors.white,
+              ),
+            ),
+      ),
       home: const NoteScreen(),
     );
   }
