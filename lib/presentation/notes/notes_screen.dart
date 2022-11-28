@@ -37,7 +37,11 @@ class _NoteScreenState extends State<NoteScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              viewModel.onEvent(
+                const NotesEvent.toggleOrderSection(),
+              );
+            },
             icon: const Icon(
               Icons.sort,
             ),
