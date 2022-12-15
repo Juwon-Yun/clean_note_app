@@ -106,7 +106,9 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         padding: const EdgeInsets.all(16),
-        color: Color(viewModel.color),
+        color: widget.note != null
+            ? Color(widget.note!.color)
+            : Color(viewModel.color),
         child: ListView(
           children: [
             Row(
@@ -122,8 +124,11 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
                         //   _color = color;
                         // });
                       },
-                      child:
-                          renderColor(color, Color(viewModel.color) == color),
+                      child: renderColor(
+                          color,
+                          widget.note != null
+                              ? Color(widget.note!.color) == color
+                              : Color(viewModel.color) == color),
                     ),
                   )
                   .toList(),
